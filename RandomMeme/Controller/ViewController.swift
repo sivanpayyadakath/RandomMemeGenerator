@@ -17,8 +17,7 @@ class ViewController: UIViewController {
         title = "Random Meme"
         // Do any additional setup after loading the view.
         
-        let urlLocation = "https://api.memeload.us/v1/random"
-        let url = URL(string: urlLocation)!
+        let url = MemeAPI.EndPoint.randomMeme.url
         
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
             guard let data = data else{

@@ -8,3 +8,13 @@
 
 import Foundation
 
+class MemeAPI{
+    enum EndPoint : String{
+        case randomMeme = "https://api.memeload.us/v1/random"
+        
+        var url: URL{
+            return URL(string: self.rawValue)!
+        }
+    }
+    
+}
