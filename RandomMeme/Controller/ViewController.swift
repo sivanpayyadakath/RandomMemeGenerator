@@ -17,36 +17,24 @@ class ViewController: UIViewController {
         title = "Random Meme"
         // Do any additional setup after loading the view.
         
-        let url = MemeAPI.EndPoint.randomMeme.url
         
-        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
-            guard let data = data else{
-                return
-            }
-            
-            let decoder = JSONDecoder()
-            let memeResponse = try! decoder.decode(Meme.self, from: data)
-        
-            guard let memeUrl = URL(string: memeResponse.image) else{
-                return
-            }
-            
-            let task = URLSession.shared.dataTask(with: memeUrl, completionHandler: { (data, response, error) in
-                guard let data = data else{
-                    return
-                }
-                
-                DispatchQueue.main.async {
-                    self.imageView.image = UIImage(data: data)
-                }
-            })
-            task.resume()
-            
-        }
-        task.resume()
+        MemeAPI.requestRandomMeme(completionHandler: self.handleFileResponse(memeResponse:error:))
     }
+    
+    func handleFileResponse(memeResponse: Meme?, error: Error?){
+        guard let memeUrl = URL(string: memeResponse?.image ?? "") else{
+            return
+        }
+        
+        MemeAPI.memeResponseInView(memeUrl: memeUrl, completionHandler: self.handleImageResponse(downloadedMeme:error:))
+    }
+    
+    func handleImageResponse(downloadedMeme: UIImage?, error: Error?){
+        DispatchQueue.main.async {
+            self.imageView.image = downloadedMeme
+        }
+    }
+    
 
-    
-    
 }
 

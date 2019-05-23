@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 class MemeAPI{
     enum EndPoint : String{
@@ -17,4 +18,32 @@ class MemeAPI{
         }
     }
     
+    class func memeResponseInView(memeUrl: URL, completionHandler: @escaping (UIImage?, Error?) -> Void){
+        let task = URLSession.shared.dataTask(with: memeUrl, completionHandler: { (data, response, error) in
+            guard let data = data else{
+                completionHandler(nil, error)
+                return
+            }
+            
+            let downloadedMeme = UIImage(data: data)
+            completionHandler(downloadedMeme, nil)
+        })
+        task.resume()
+    }
+    
+    class func requestRandomMeme(completionHandler: @escaping (Meme?, Error?) -> Void){
+        let url = MemeAPI.EndPoint.randomMeme.url
+        
+        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+            guard let data = data else{
+                completionHandler(nil, error)
+                return
+            }
+            
+            let decoder = JSONDecoder()
+            let memeResponse = try! decoder.decode(Meme.self, from: data)
+            completionHandler(memeResponse, nil)
+        }
+        task.resume()
+    }
 }
