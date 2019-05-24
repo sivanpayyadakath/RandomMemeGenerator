@@ -19,14 +19,18 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oZX-TB-Ihf">
-                                <rect key="frame" x="10" y="108" width="394" height="734"/>
+                                <rect key="frame" x="20" y="108" width="374" height="734"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="nwz-SL-TN6" appends="YES" id="NXB-pv-tfC"/>
+                                </connections>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="oZX-TB-Ihf" secondAttribute="trailing" constant="10" id="H74-6o-RUo"/>
+                            <constraint firstItem="oZX-TB-Ihf" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="KtL-Ft-I91"/>
                             <constraint firstItem="oZX-TB-Ihf" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="MhZ-oD-ENW"/>
-                            <constraint firstItem="oZX-TB-Ihf" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="ayk-53-Vxl"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="oZX-TB-Ihf" secondAttribute="trailing" constant="20" id="kkg-0L-i3g"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="oZX-TB-Ihf" secondAttribute="bottom" constant="20" id="ymd-rB-2pS"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -34,11 +38,18 @@
                     <navigationItem key="navigationItem" id="Fbm-Oo-kKs"/>
                     <connections>
                         <outlet property="imageView" destination="oZX-TB-Ihf" id="bCL-ps-AzI"/>
+                        <outlet property="nextMeme" destination="Fbm-Oo-kKs" id="k4X-TO-VOI"/>
+                        <outlet property="swipeGesture" destination="nwz-SL-TN6" id="ExU-6G-uyX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="right" id="nwz-SL-TN6">
+                    <connections>
+                        <action selector="upGesture:" destination="BYZ-38-t0r" id="3mp-uV-lAu"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1047.8260869565217" y="138.61607142857142"/>
+            <point key="canvasLocation" x="1262" y="783"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="hAt-ek-a2t">

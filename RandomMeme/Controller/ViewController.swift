@@ -11,16 +11,20 @@ import UIKit
 class ViewController: UIViewController {
 
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet var swipeGesture: UISwipeGestureRecognizer!
+    @IBOutlet weak var button: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Random Meme"
         // Do any additional setup after loading the view.
         
-        
         MemeAPI.requestRandomMeme(completionHandler: self.handleFileResponse(memeResponse:error:))
+        
     }
     
+
+  
     func handleFileResponse(memeResponse: Meme?, error: Error?){
         guard let memeUrl = URL(string: memeResponse?.image ?? "") else{
             return
