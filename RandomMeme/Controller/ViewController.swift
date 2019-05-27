@@ -11,20 +11,20 @@ import UIKit
 class ViewController: UIViewController {
 
     @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet var swipeGesture: UISwipeGestureRecognizer!
-    @IBOutlet weak var button: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Random Meme"
         // Do any additional setup after loading the view.
         
+        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(nextMeme))
+        swipeLeft.direction = .left
+        self.view.addGestureRecognizer(swipeLeft)
+        
         MemeAPI.requestRandomMeme(completionHandler: self.handleFileResponse(memeResponse:error:))
         
     }
     
-
-  
     func handleFileResponse(memeResponse: Meme?, error: Error?){
         guard let memeUrl = URL(string: memeResponse?.image ?? "") else{
             return
@@ -40,5 +40,16 @@ class ViewController: UIViewController {
     }
     
 
+    @objc private func nextMeme() {
+        UIView.animate(withDuration: 0.3, delay: 0.0, options: .curveEaseOut, animations: {
+            MemeAPI.requestRandomMeme(completionHandler: self.handleFileResponse(memeResponse:error:))
+            
+        }, completion: nil)
+    }
+    
+    private func newMeme(){
+
+    }
+    
 }
 

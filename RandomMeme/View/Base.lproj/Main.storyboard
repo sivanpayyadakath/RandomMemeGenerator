@@ -21,9 +21,6 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oZX-TB-Ihf">
                                 <rect key="frame" x="20" y="108" width="374" height="734"/>
                                 <gestureRecognizers/>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="nwz-SL-TN6" appends="YES" id="NXB-pv-tfC"/>
-                                </connections>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -38,16 +35,9 @@
                     <navigationItem key="navigationItem" id="Fbm-Oo-kKs"/>
                     <connections>
                         <outlet property="imageView" destination="oZX-TB-Ihf" id="bCL-ps-AzI"/>
-                        <outlet property="nextMeme" destination="Fbm-Oo-kKs" id="k4X-TO-VOI"/>
-                        <outlet property="swipeGesture" destination="nwz-SL-TN6" id="ExU-6G-uyX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <swipeGestureRecognizer direction="right" id="nwz-SL-TN6">
-                    <connections>
-                        <action selector="upGesture:" destination="BYZ-38-t0r" id="3mp-uV-lAu"/>
-                    </connections>
-                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1262" y="783"/>
         </scene>
